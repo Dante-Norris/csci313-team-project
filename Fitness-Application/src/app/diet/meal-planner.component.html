@@ -1,0 +1,17 @@
+<h2>Meals</h2>
+<div id="container">
+  <div id="list">
+    <ul class="meals" id="mealList">
+      <li *ngFor="let meal of meals"
+      (click)="onSelect(meal)"
+      [class.selected]="meal === selectedMeal">
+        {{meal.name}}
+      </li>
+    </ul>
+  </div>
+  <div id="details" *ngIf="selectedMeal">
+    <p>Ingredients: {{ selectedMeal.ingredients }}</p>
+    <p>Instructions:  {{ selectedMeal.instruction }} </p>
+    <p>Calories: {{ selectedMeal.calories }} </p>
+  </div>
+</div>

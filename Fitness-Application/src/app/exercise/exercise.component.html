@@ -1,0 +1,16 @@
+<h2>My Exercises</h2>
+<div id="container">
+  <div id="list">
+    <ul class="exercises" id="exerciseList">
+      <li *ngFor="let exercise of exercises"
+      (click)="onSelect(exercise)"
+      [class.selected]="exercise === selectedExercise">
+        {{exercise.name}}
+      </li>
+    </ul>
+  </div>
+  <div id="details" *ngIf="selectedExercise">
+    <p>Description: {{ selectedExercise.description }}</p>
+    <p>Difficulty: {{ selectedExercise.difficulty }} </p>
+  </div>
+</div>

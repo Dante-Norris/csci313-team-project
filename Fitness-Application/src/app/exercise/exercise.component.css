@@ -1,0 +1,15 @@
+
+.selected {
+    background-color: gray;
+    color: white;
+}
+#list {
+    float: left;
+    width: 40%;
+    overflow: hidden; overflow-y: scroll;
+    height: 200px;
+}
+#detail {
+    float: left;
+    border-left-color: black;
+}

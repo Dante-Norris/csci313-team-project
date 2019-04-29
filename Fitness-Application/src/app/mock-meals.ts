@@ -1,0 +1,30 @@
+import { Meal } from './meal';
+
+export const MEALS: Meal[] = [
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    {name: 'tempname', calories: 69, ingredients: 'tempingredients', instructions: 'tempinstructions'},
+    
+]
