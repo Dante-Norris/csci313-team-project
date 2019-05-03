@@ -12,14 +12,22 @@ import { MealPlannerComponent } from './diet/meal-planner.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
+import { LoginComponentComponent } from './login-component/login-component.component';
+import { RegisterComponentComponent } from './register-component/register-component.component';
+
+import { AuthService } from './services/auth.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProfileComponent,
     ExerciseComponent,
-    MealPlannerComponent
+    MealPlannerComponent,
+    LoginComponentComponent,
+    RegisterComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +37,7 @@ import { environment } from '../environments/environment';
     AngularFireStorageModule,
     
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
