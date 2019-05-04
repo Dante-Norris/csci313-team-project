@@ -17,7 +17,7 @@ import { environment } from '../environments/environment';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { RegisterComponentComponent } from './register-component/register-component.component';
 
-import { AuthService } from './services/auth.service';
+import { AuthService } from './providers/auth.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { AuthService } from './services/auth.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
-    
+    FormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
