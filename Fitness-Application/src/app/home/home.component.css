@@ -1,25 +1,14 @@
-img {
-    border-radius: 10px;
-    border: 5px solid #ffffff;
-    margin-left: 25px;
-    margin-right: 25px;
-    margin-top: 5px;
-    outline: 5px solid #414754;
+#homeContainer{
+    width: 100%;
+}
+.halfdiv{
+    width:44%;
+    margin-left: 3%;
+    margin-right: 3%;
     float: left;
 }
-h2{
-    margin-top: 15px;
-    font-family: cursive;
-    font-size: 250%
-}
-#bottom{
-    margin-top: -30px;
-    
-}
-#top{
-    margin-bottom: -15px;
-    margin-top: 25px;
-    
-    
+img{
+    max-width: 100%;
+    height: auto;
 }
 
