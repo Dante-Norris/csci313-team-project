@@ -10,22 +10,21 @@ h1{
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #414754;
 }
-a{
-    margin-left: 10%;
-    margin-right: 10%;
-    color: #ffffff;
-    font-family: cursive;
-    font-size: 150%;
-    letter-spacing: 2px;
-
+nav{
+    clear: left;
 }
-#nav{
-
-    border-top: 10px solid #414754;
-    border-bottom: 10px solid #414754;
-    background: #414754;
-    width: 100%;
-   
+div a{
+    background-color: #414754;
+    float: left;
+    width: 25%;
+    height: 70px;
+    line-height: 70px;
+    font-family: cursive;
+    transition: background-color .5s ease,
+                font-size .1s linear;
+    font-size: 30px;
+    color: white;
+    border-bottom: 20px solid #E3E8F0;
 }
 img{
     width: 150px;
@@ -35,13 +34,11 @@ img{
     margin-right: 20px;
     float: left;
 }
-#body{
-
-}
 #main{
     background: #E3E8F0;
     border-top: 20px solid #E3E8F0;
     height: 1000px;
+    min-width: 890px;
 
 }
 nav{
@@ -49,12 +46,13 @@ nav{
     text-align: center;
     
 }
-a:link{
+div a:link{
     text-decoration: none;
 }
-a:visited{
+div a:visited{
     text-decoration: none;
 }
-a:hover{
-    text-decoration: underline;
+div a:hover{
+   background-color: #313642;
+   font-size: 40px;
 }
