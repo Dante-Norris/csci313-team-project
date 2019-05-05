@@ -13,13 +13,11 @@ export class RegisterComponentComponent implements OnInit {
   constructor(private authService : AuthService ) { }
 
   onSubmit() {
-    // try {
+
     const email = (<HTMLInputElement> document.getElementById("email")).value
     const password = (<HTMLInputElement>document.getElementById("password")).value
     this.authService.signUp( email , password );
-    // } catch(e) {
-      
-    // }
+    
   }
 
 
