@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+
 import * as firebase from 'firebase';
-import { AuthService } from './providers/auth.service'
-import { SWITCH_COMPILE_NGMODULE__POST_R3__ } from '@angular/core/src/metadata/ng_module';
 import { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +12,19 @@ import { OnInit } from '@angular/core';
 
 
 export class AppComponent  implements OnInit {
+  constructor ( public afAuth: AngularFireAuth ){}
+  
   title = 'Fitness-Application';
+
+  
   ngOnInit() {
-    firebase.initializeApp({
-      apiKey: "AIzaSyAE_I6MIbYII48cyHiplYTu8bGYgpptiOo",
-      authDomain: "csci-313-team-project.firebaseapp.com",
-    });
+    // only initializes this app once
+    if (!firebase.apps.length) { 
+        firebase.initializeApp({
+          apiKey: "AIzaSyAE_I6MIbYII48cyHiplYTu8bGYgpptiOo",
+          authDomain: "csci-313-team-project.firebaseapp.com",
+        });
+    }
   }
   
 }
