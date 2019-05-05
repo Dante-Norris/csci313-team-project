@@ -4,13 +4,13 @@
     </div>
     <div class = "halfdiv">
         <div class = "button">
-            <a routerLink="/login">Login</a>
+            <a routerLink="/login" *ngIf="!getLoggedStatus()">Login</a>
         </div>
         <div class = "button">
-            <a routerLink="/register">Register</a>
+            <a routerLink="/register" *ngIf="!getLoggedStatus()">Register</a>
         </div>
-        
-            <input type="button" (click)='logout()' value="logout">
+       
+            <input type="button" (click)='logout()' value="logout" *ngIf="getLoggedStatus()">
             
         
         <h1>Get Fit Now!</h1>
