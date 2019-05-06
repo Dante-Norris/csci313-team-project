@@ -17,8 +17,10 @@ export class RegisterComponentComponent implements OnInit {
     const email = (<HTMLInputElement> document.getElementById("email")).value
     const password = (<HTMLInputElement>document.getElementById("password")).value
     const passwordConfirm = (<HTMLInputElement> document.getElementById("passwordConfirm")).value
+    const displayName = (<HTMLInputElement> document.getElementById("displayName")).value
+
     if(passwordConfirm === password) {
-      this.authService.signUp( email , password );
+      this.authService.signUp( email , password , displayName );
     } else {
       alert("Password's do not match")
     }

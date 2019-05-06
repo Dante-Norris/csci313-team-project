@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from './providers/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +16,14 @@ export class AppComponent  implements OnInit {
   constructor ( public afAuth: AngularFireAuth ){}
   
   title = 'Fitness-Application';
-
   
+  public loggedIn : string  = (firebase.auth().currentUser === null) ? "yes" : "no"
+
+  logInCheck() {
+    this.loggedIn = firebase.auth().currentUser === null ? "yes" : "no"
+    return this.loggedIn === "yes"
+  }
+
   ngOnInit() {
     // only initializes this app once
     if (!firebase.apps.length) { 

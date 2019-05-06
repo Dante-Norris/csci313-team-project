@@ -11,38 +11,38 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class AuthService {
 
   constructor( public afAuth: AngularFireAuth ) { }
-  loggedStatus: boolean = false;
 
-  
+  public loggedStatus: boolean = false;
+
+ 
 
   // Sign up
-  signUp(email: string, password: string) {
-
+  signUp(email: string, password: string, name: string ) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(function(firebaseUser) {
+        // Success block
+        console.log("Register Successful")
+        firebase.auth().currentUser.updateProfile({
+          displayName: name
+        })
+      })
+      .catch(function(error) {
+        // Error block
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if ( errorCode === 'auth/email-already-in-use') {
+          alert('That email is already registered to an account')
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      })
 
-    .then(function(firebaseUser) {
-      // Success block
-      console.log("Register Successful")
-    })
-
-    .catch(function(error) {
-      // Error block
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      if ( errorCode === 'auth/email-already-in-use') {
-        alert('That email is already registered to an account')
-      } else {
-        alert(errorMessage);
-      }
-      console.log(error);
-    });
-
-    // Redirect if successful
-    if (firebase.auth().currentUser) {
-      console.log("i'm here");
-      console.log(firebase.auth().currentUser)
-      this.redirect('homeLink')
-    }
+      if (firebase.auth().currentUser) {
+          console.log(firebase.auth().currentUser)
+          console.log("i'm here");
+          this.redirect('homeLink')
+        } 
 
   }
 
@@ -50,11 +50,12 @@ export class AuthService {
   // Log in
   logIn(email: string, password: string) {
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
 
+    firebase.auth().signInWithEmailAndPassword(email, password)
     .then(function(firebaseUser) {
-      // Success block
-      console.log("Sign in successful")
+      // // Success block
+      // console.log("Sign in successful")
+      console.log(firebase.auth().currentUser)
     })
     .catch(function(error) {
       // Error block
@@ -68,11 +69,11 @@ export class AuthService {
         alert(errorMessage);
       }
       console.log(error);
-    });
+    })
     if (firebase.auth().currentUser) {
-      console.log("i'm here");
-      console.log(firebase.auth().currentUser)
-      this.redirect('homeLink')
+        console.log(firebase.auth().currentUser)
+        console.log("I'm here")
+        this.redirect('homeLink')
     }
   }
 

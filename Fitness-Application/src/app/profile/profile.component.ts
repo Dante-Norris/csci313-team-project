@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-profile',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileComponent implements OnInit {
 
   constructor() { }
+
+  public name: string = firebase.auth().currentUser.displayName
 
   ngOnInit() {
   }
