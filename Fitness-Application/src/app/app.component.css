@@ -24,7 +24,7 @@ div a{
                 font-size .1s linear;
     font-size: 30px;
     color: white;
-    border-bottom: 20px solid #E3E8F0;
+    
 }
 img{
     width: 150px;
@@ -37,9 +37,9 @@ img{
 #main{
     background: #E3E8F0;
     border-top: 20px solid #E3E8F0;
-    height: 1000px;
+    height: 100v;
     min-width: 890px;
-
+    border-bottom: 30px solid #E3E8F0;
 }
 nav{
     
