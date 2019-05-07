@@ -70,6 +70,7 @@ h6{
     background-color: #414754;
     margin-left: 35%;
     margin-right: 35%;
+    margin-bottom: 30vmax;
 }
 
 div a{
@@ -94,5 +95,5 @@ a:visited{
 .reg a:hover{
     background-color: #313642;
     font-size: 2vmax;
- }
+}
 
