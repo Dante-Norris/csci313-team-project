@@ -14,8 +14,9 @@
     </div>
   </div>
   
-  <div class="list" *ngFor="let item of items | async">
-      <div id = "center">
+  <div class = "scroll" id = "center">
+    <div class="list" *ngFor="let item of items | async">
+      <div>
         <div class = "items">
           <p>{{item.Name}}</p>
         </div>
@@ -26,5 +27,6 @@
           <p>{{item.Calories}}</p>
         </div>
       </div>
+    </div>
   </div>
 </div>

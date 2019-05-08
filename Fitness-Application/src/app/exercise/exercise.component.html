@@ -16,9 +16,9 @@
       </div>
     </div>
   </div>
-  
-  <div class="list" *ngFor="let item of items | async">
-      <div id = "center">
+  <div class = "scroll" id = "center">
+    <div class="list" *ngFor="let item of items | async">
+      <div>
         <div class = "items">
           <p>{{item.Name}}</p>
         </div>
@@ -32,5 +32,7 @@
           <p>{{item.Type}}</p>
         </div>
       </div>
+    </div>
   </div>
+  
 </div>
