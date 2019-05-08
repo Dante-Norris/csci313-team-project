@@ -7,25 +7,28 @@
     clear: both;
 }
 .container{
-    height: 60vh;
+    height: 57.7vh;
 }
 .item{
     
     float:left;
-    width: 25%;
+    width: 33.33333333%;
     font-family: cursive;
     background-color: #313642;
     color: white;
-    font-size: 2vmax
+    font-size: 1.4vmax;
+    line-height: 2vmax;
+    height: 5vmax;
 }
 .items{
     float:left;
-    width: 25%;
+    width: 33.33333333%;
     font-family: cursive;
     background-color: #414754;
     color: white;
     font-size: 1.4vmax;
-    height: 7vmax;
+    line-height: 2vmax;
+    height: 5vmax;
     border-bottom: 1px solid #313642;
 }
 #center{
@@ -33,7 +36,13 @@
     margin-left: 15%;
     margin-right: 15%; 
 }
+#center2{
+    width: 94%;
+    margin-left: 3%;
+    margin-right: 3%; 
+}
 h2{
+    line-height: 5vmax;
     text-align: center;
     font-size: 5vmax;
     margin: 1vmax;
@@ -45,7 +54,7 @@ h2{
 .scroll{
     clear:both;
     overflow-y: auto;
-    height: 300px;
+    height: 250px;
 }
 ::-webkit-scrollbar-track
 {
@@ -62,4 +71,15 @@ h2{
 ::-webkit-scrollbar-thumb
 {
     background-color: #000000;
+}
+.Desc{
+    
+    float:left;
+    width: 100%;
+    font-family: cursive;
+    background-color: #313642;
+    color: white;
+    font-size: 1.4vmax;
+    line-height: 2vmax;
+    height: 10vmax;
 }
