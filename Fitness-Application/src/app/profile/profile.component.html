@@ -1,3 +1,51 @@
 
+<div id="userProfile">
+    <div *ngFor="let item of items | async" >
+        <div *ngIf="item.Name == displayName">
+            <p> Welcome,   {{ item.Name }} </p>
+            <p> Height: <span *ngIf="!item.Height">N/A</span> {{ item.Height }} </p>
+            <p> Weight(Pounds): <span *ngIf="!item.Weight">N/A</span> {{ item.Weight }} </p>
+            <p> Age: <span *ngIf="!item.Age">N/A</span> {{ item.Age }} </p>
+        </div>
+            
 
-<p> Hello, {{ name }} </p>
+    </div>
+    
+</div>
+
+
+
+
+<div id="">
+    Update Profile: 
+    <p> Age (Years) : <input type="number" id="age">
+    <p> Weight(Pounds) : <input type="number" id="weight"> </p>
+    <p> Height: <br>
+        <select name="feet" id="heightSelectFeet">
+            <option selected="selected"> </option>
+            <option value="2'">2'</option>
+            <option value="3'">3'</option>
+            <option value="4'">4'</option>
+            <option value="5'">5'</option>
+            <option value="6'">6'</option>
+            <option value="7'">7'</option>
+            <option value="8'">8'</option>
+        </select>
+        <select name="inches" id="heightSelectInches">
+            <option selected="selected"> </option>
+            <option value='1"'>1"</option>
+            <option value='2"'>2"</option>
+            <option value='3"'>3"</option>
+            <option value='4"'>4"</option>
+            <option value='5"'>5"</option>
+            <option value='6"'>6"</option>
+            <option value='7"'>7"</option>
+            <option value='8"'>8"</option>
+            <option value='9"'>9"</option>
+            <option value='10"'>10"</option>
+            <option value='11"'>11"</option>
+        </select>
+    </p> 
+    <input type="button" (click)="onClick()">
+
+</div>

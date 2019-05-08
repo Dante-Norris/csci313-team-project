@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
-
+import { AngularFirestore } from '@angular/fire/firestore';
+import { defineBase } from '@angular/core/src/render3';
+import { SWITCH_COMPILE_NGMODULE__POST_R3__ } from '@angular/core/src/metadata/ng_module';
 
 
 @Injectable({
@@ -12,12 +14,26 @@ export class AuthService {
 
   constructor( public afAuth: AngularFireAuth ) { }
 
-  public loggedStatus: boolean = false;
-
+  public loggedStatus: boolean = false
+  public db: AngularFirestore
  
 
   // Sign up
+  private signUp2() {
+
+    this.db.collection('users').doc(firebase.auth().currentUser.uid).set({
+      Name: firebase.auth().currentUser.displayName
+    }).then(function() {
+      console.log("User info written");
+    }).catch(function(error) {
+      var errorMessage = error.message
+      console.error(errorMessage)
+    })
+  }
+
+
   signUp(email: string, password: string, name: string ) {
+
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(function(firebaseUser) {
         // Success block
@@ -26,6 +42,7 @@ export class AuthService {
           displayName: name
         })
       })
+
       .catch(function(error) {
         // Error block
         var errorCode = error.code;
@@ -40,16 +57,16 @@ export class AuthService {
 
       if (firebase.auth().currentUser) {
           console.log(firebase.auth().currentUser)
-          console.log("i'm here");
+          console.log("i'm here")
           this.redirect('homeLink')
-        } 
+          
+      }; 
 
   }
 
 
   // Log in
   logIn(email: string, password: string) {
-
 
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(function(firebaseUser) {
@@ -70,6 +87,7 @@ export class AuthService {
       }
       console.log(error);
     })
+
     if (firebase.auth().currentUser) {
         console.log(firebase.auth().currentUser)
         console.log("I'm here")
@@ -92,6 +110,6 @@ export class AuthService {
 
   redirect(location: string) {
     let element: HTMLElement = document.getElementById(location) as HTMLElement;
-    element.click();
+    element.click()
   }
 }
