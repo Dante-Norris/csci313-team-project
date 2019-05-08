@@ -18,7 +18,7 @@ export class RegisterComponentComponent implements OnInit {
     const password = (<HTMLInputElement>document.getElementById("password")).value
     const passwordConfirm = (<HTMLInputElement> document.getElementById("passwordConfirm")).value
     const displayName = (<HTMLInputElement> document.getElementById("displayName")).value
-
+    
     if(passwordConfirm === password) {
       this.authService.signUp( email , password , displayName );
     } else {
