@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MEALS } from '../mock-meals';
 import { Meal } from '../meal';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-meal-planner',
@@ -14,8 +16,10 @@ export class MealPlannerComponent implements OnInit {
   onSelect(meal: Meal): void {
     this.selectedMeal = meal;
   }
-
-  constructor() { }
+  items: Observable<any[]>;
+  constructor(db: AngularFirestore) {
+    this.items = db.collection('diet').valueChanges();
+  }
 
   ngOnInit() {
   }

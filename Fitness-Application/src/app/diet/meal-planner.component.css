@@ -1,13 +1,44 @@
-#list {
-    float: left;
-    width: 40%;
-    overflow: hidden; overflow-y: scroll;
-    height: 200px;
+.list{
+    text-align: center;
+    clear: both;
 }
-#details {
-    float: left;
+.header{
+    text-align: center;
+    clear: both;
 }
-.selected {
-    background-color: gray;
+.container{
+    height: 100vh;
+}
+.item{
+    
+    float:left;
+    width: 33.3%;
+    font-family: cursive;
+    background-color: #313642;
     color: white;
+    font-size: 2vmax
+}
+.items{
+    float:left;
+    width: 33.3%;
+    font-family: cursive;
+    background-color: #414754;
+    color: white;
+    font-size:1.4vmax;
+    height: 7vmax;
+    border-bottom: 1px solid #313642;
+}
+#center{
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%; 
+}
+h2{
+    text-align: center;
+    font-size: 5vmax;
+    margin: 1vmax;
+    font-family: cursive;
+    color: #ffffff;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #414754;
 }

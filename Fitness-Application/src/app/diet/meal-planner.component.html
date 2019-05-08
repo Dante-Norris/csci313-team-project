@@ -1,17 +1,30 @@
 <h2>Meals</h2>
-<div id="container">
-  <div id="list">
-    <ul class="meals" id="mealList">
-      <li *ngFor="let meal of meals"
-      (click)="onSelect(meal)"
-      [class.selected]="meal === selectedMeal">
-        {{meal.name}}
-      </li>
-    </ul>
+<div class="container">
+  <div class = "list">
+    <div id = "center">
+      <div class = "item">
+        <h4>Meal</h4>
+      </div>
+      <div class = "item">
+        <h4>Ingredients</h4>
+      </div>
+      <div class = "item">
+        <h4>Calories</h4>
+      </div> 
+    </div>
   </div>
-  <div id="details" *ngIf="selectedMeal">
-    <p>Ingredients: {{ selectedMeal.ingredients }}</p>
-    <p>Instructions:  {{ selectedMeal.instruction }} </p>
-    <p>Calories: {{ selectedMeal.calories }} </p>
+  
+  <div class="list" *ngFor="let item of items | async">
+      <div id = "center">
+        <div class = "items">
+          <p>{{item.Name}}</p>
+        </div>
+        <div class = "items">
+          <p>{{item.Ingredients}}</p>
+        </div>
+        <div class = "items">
+          <p>{{item.Calories}}</p>
+        </div>
+      </div>
   </div>
 </div>

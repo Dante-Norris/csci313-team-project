@@ -1,16 +1,36 @@
-<h2>My Exercises</h2>
-<div id="container">
-  <div id="list">
-    <ul class="exercises" id="exerciseList">
-      <li *ngFor="let exercise of exercises"
-      (click)="onSelect(exercise)"
-      [class.selected]="exercise === selectedExercise">
-        {{exercise.name}}
-      </li>
-    </ul>
+<h2>Exercises</h2>
+<div class="container">
+  <div class = "list">
+    <div id = "center">
+      <div class = "item">
+        <h4>Name</h4>
+      </div>
+      <div class = "item">
+        <h4>Intensity</h4>
+      </div>
+      <div class = "item">
+        <h4>Description</h4>
+      </div>
+      <div class = "item">
+        <h4>Type</h4>
+      </div>
+    </div>
   </div>
-  <div id="details" *ngIf="selectedExercise">
-    <p>Description: {{ selectedExercise.description }}</p>
-    <p>Difficulty: {{ selectedExercise.difficulty }} </p>
+  
+  <div class="list" *ngFor="let item of items | async">
+      <div id = "center">
+        <div class = "items">
+          <p>{{item.Name}}</p>
+        </div>
+        <div class = "items">
+          <p>{{item.Intensity}}</p>
+        </div>
+        <div class = "items">
+          <p>{{item.Description}}</p>
+        </div>
+        <div class = "items">
+          <p>{{item.Type}}</p>
+        </div>
+      </div>
   </div>
 </div>
