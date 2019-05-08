@@ -1,23 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import { EXERCISES } from '../mock-exercises';
-import { Exercise } from '../exercise';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
+export class Exercise {
+  name: string;
+  description: string;
+  intensity: string; 
+  type: string;
+}
+
+export class ExerciseID extends Exercise{ 
+  id: string; 
+}
+
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
   styleUrls: ['./exercise.component.css']
 })
 export class ExerciseComponent implements OnInit {
-  exercises = EXERCISES;
-  selectedExercise: Exercise;
-  onSelect(exercise: Exercise): void {
+  selectedExercise: ExerciseID;
+
+  onSelect(exercise: ExerciseID): void {
     this.selectedExercise = exercise;
   }
-  items: Observable<any[]>;
+
+  private exerciseCollection: AngularFirestoreCollection<Exercise>;
+  exercises: Observable<ExerciseID[]>;
+
   constructor(db: AngularFirestore) {
-    this.items = db.collection('exercises').valueChanges();
+    this.exerciseCollection = db.collection<Exercise>('exercises');
+    this.exercises = this.exerciseCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Exercise;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
   }
+
   ngOnInit() {
   }
 
