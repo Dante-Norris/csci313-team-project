@@ -2,29 +2,29 @@
 <div class="container">
   <div class = "list">
     <div id = "center">
-      <div class = "item">
-        <h4>Name</h4>
+      <div class = "item" (click)="sort('Name')">
+        <h4 id="selectable">Name</h4>
       </div>
-      <div class = "item">
-        <h4>Type</h4>
+      <div class = "item" (click)="sort('Type')">
+        <h4 id="selectable">Type</h4>
       </div>
-      <div class = "item">
-        <h4>Intensity</h4>
+      <div class = "item" (click)="sort('Intensity')">
+        <h4 id="selectable">Intensity</h4>
       </div>  
     </div>
   </div>
   
   <div class = "scroll" id = "center">
-    <div class="list" *ngFor="let item of exercises | async" (click)="onSelect(item)">
+    <div class="list" *ngFor="let item of exercises | async">
       <div>
         <div class = "items">
-          <p>{{item.Name}}</p>
+          <p id="selectable" (click)="onSelect(item)">{{item.Name}}</p>
         </div>
         <div class = "items">
-            <p>{{item.Type}}</p>
+            <p id="selectable" (click)="onSelect(item)">{{item.Type}}</p>
         </div>
         <div class = "items">
-          <p>{{item.Intensity}}</p>
+          <p id="selectable" (click)="onSelect(item)">{{item.Intensity}}</p>
         </div>
       </div>
     </div>
