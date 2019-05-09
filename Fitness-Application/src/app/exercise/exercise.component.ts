@@ -123,6 +123,17 @@ export class ExerciseComponent implements OnInit {
     this.exercises = this.exercises.map(items => items.filter(item => item.Intensity.toLowerCase().includes(inputIntensity.toLowerCase())));
   }
 
+  //Create exercise, add to database
+  addExercise(newName: string, newType: string, newIntensity: string, newDescription: string){
+    this.data.collection('exercises').add({
+      Name: newName,
+      Type: newType,
+      Intensity: newIntensity,
+      Description: newDescription
+    })
+  }
+
+  data: AngularFirestore;
   //Used as temporary collection in constructor
   exerciseCollection: AngularFirestoreCollection<Exercise>;
   //Displayed as list on page
@@ -130,6 +141,7 @@ export class ExerciseComponent implements OnInit {
 
   //Returns collection as Observable<ExerciseID[]> which includes the document ID
   constructor(db: AngularFirestore) {
+    this.data = db;
     this.exerciseCollection = db.collection<Exercise>('exercises');
     this.exercises = this.exerciseCollection.snapshotChanges().map(actions => {
       return actions.map(a => {

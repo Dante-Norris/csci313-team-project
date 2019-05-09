@@ -15,31 +15,48 @@
       </div>
   <div class = "list">
     <div id = "center">
-      <div class = "item">
-        <h4>Meal</h4>
+      <div class = "item" (click)="sort('Name')">
+        <h4 id="selectable">Meal &#x21D5;</h4>
       </div>
       <div class = "item">
         <h4>Ingredients</h4>
       </div>
-      <div class = "item">
-        <h4>Calories</h4>
+      <div class = "item" (click)="sort('Calories')">
+        <h4 id="selectable">Calories &#x21D5;</h4>
       </div> 
     </div>
   </div>
   
   <div class = "scroll" id = "center">
-    <div class="list" *ngFor="let item of items | async">
+    <div class="list" *ngFor="let meal of meals | async">
       <div>
         <div class = "items">
-          <p>{{item.Name}}</p>
+          <p>{{meal.Name}}</p>
         </div>
         <div class = "items">
-          <p>{{item.Ingredients}}</p>
+          <p>{{meal.Ingredients}}</p>
         </div>
         <div class = "items">
-          <p>{{item.Calories}}</p>
+          <p>{{meal.Calories}}</p>
         </div>
       </div>
     </div>
   </div>
+  <div id="center">
+      <p>
+        Add Food
+      </p>
+        <p>
+            <input type="string" class="inputLeftAlign" #newName placeholder="Name">
+        </p>
+        <p>
+            <input type="string" class="inputLeftAlign" #newIngredients placeholder="Ingredients">
+        </p>
+        <p>
+            <input type="number" class="inputLeftAlign" #newCalories placeholder="Calories">
+        </p>
+        <p>
+            <button class = "button" (click)="addFood(newName.value, newIngredients.value, newCalories.value)">Submit</button>
+        </p>
+    </div>
 </div>

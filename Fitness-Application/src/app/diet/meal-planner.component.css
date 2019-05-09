@@ -81,6 +81,23 @@ h2{
     color: #414754;
     text-align: center;
 }
+.inputLeftAlign{
+    margin-left: -2.7px;
+    width: 100%;
+    height: 3vmax;
+    line-height: 2.5vmax;
+    font-size: 2vmax;
+    font-family: cursive;
+    border: 3px solid #E3E8F0;
+    transition: border .3s ease-in-out;
+    -webkit-transition: border-radius 1s,
+                        border .3s ease-in-out;         
+    color: #414754;
+    text-align: left;
+}
+#selectable{
+    cursor: pointer;
+}
 ::-webkit-scrollbar-track
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);

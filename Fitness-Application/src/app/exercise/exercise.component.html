@@ -3,7 +3,7 @@
   <div>
     <div id="center">
         <p>
-          <input type="string" class = "input" #searchTerm placeholder="Search">
+          <input type="string" class = "input" #searchTerm placeholder="Search...">
         </p>
         <p>
           <button class = "button" (click)="searchByName(searchTerm.value)">Search by Name</button>
@@ -47,6 +47,26 @@
       <p *ngIf="selectedExercise">{{selectedExercise.Name }} ({{ selectedExercise.Type }}, {{ selectedExercise.Intensity }})</p>
       <p *ngIf="selectedExercise">Description: {{ selectedExercise.Description }}</p>
     </div>
-    </div>
+  </div>
+  <div id="center">
+    <p>
+      Add Exercise
+    </p>
+      <p>
+          <input type="string" class="inputLeftAlign" #newName placeholder="Name">
+      </p>
+      <p>
+          <input type="string" class="inputLeftAlign" #newType placeholder="Type">
+      </p>
+      <p>
+          <input type="string" class="inputLeftAlign" #newIntensity placeholder="Intensity">
+      </p>
+      <p>
+          <textarea type="string" class="inputLeftAlign" rows="10" cols="30" #newDescription placeholder="Description"></textarea>
+      </p>
+      <p>
+          <button class = "button" (click)="addExercise(newName.value, newType.value, newIntensity.value, newDescription.value)">Create Exercise</button>
+      </p>
+  </div>
   
 </div>

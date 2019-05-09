@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { MEALS } from '../mock-meals';
-import { Meal } from '../meal';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+
+export class Meal {
+  Name: string;
+  Ingredients: string;
+  Calories: number;
+}
+
+export class MealID extends Meal{
+  id: string;
+}
 
 @Component({
   selector: 'app-meal-planner',
@@ -11,14 +19,104 @@ import { Observable } from 'rxjs';
 })
 export class MealPlannerComponent implements OnInit {
 
-  meals = MEALS;
   selectedMeal: Meal;
   onSelect(meal: Meal): void {
     this.selectedMeal = meal;
   }
-  items: Observable<any[]>;
+
+  data: AngularFirestore;
+  meals: Observable<MealID[]>;
+  mealCollection: AngularFirestoreCollection<Meal>;
+
   constructor(db: AngularFirestore) {
-    this.items = db.collection('diet').valueChanges();
+    this.data = db;
+    this.mealCollection = db.collection<Meal>('diet');
+    this.meals = this.mealCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Meal;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
+  }
+
+  //Create exercise, add to database
+  addFood(newName: string, newIngredients: string, newCalories: number){
+    this.data.collection('diet').add({
+      Name: newName,
+      Ingredients: newIngredients,
+      Calories: newCalories
+    })
+  }
+
+  //Sort list by Name, Type, or Intensity
+  sort(sortBy: string){
+    if(sortBy === 'Name'){
+      this.meals = this.meals.map( items => items.sort(this.sortByName));
+    }
+    else{
+      this.meals = this.meals.map( items => items.sort(this.sortByCalories));
+    }
+  }
+
+  //Sort list alphabetically by Name of meal
+  sortByName(a,b) {
+    if (a.Name < b.Name)
+      return -1;
+    if (a.Name > b.Name)
+      return 1;
+    return 0;
+  }
+
+  //Sort list by Calories of meal (ascending)
+  sortByCalories(a,b) {
+    
+    if (a.Calories < b.Calories)
+      return -1;
+    if (a.Calories > b.Calories)
+      return 1;
+    return 0;
+  }
+
+  //Reset this.meals in case already searched
+  resetList(){
+    this.meals = this.mealCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Meal;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
+  }
+
+  //Search and display exercises whose Names contain the search term
+  searchByName(inputName: string){
+    this.resetList();
+
+    this.selectedMeal = null;
+
+    //this.exercises now contains only the exercises matching the searched name
+    this.meals = this.meals.map(items => items.filter(item => item.Name.toLowerCase().includes(inputName.toLowerCase())));
+  }
+
+  //Search and display exercises whose Types contain the search term
+  searchByIngredients(inputIngredients: string){
+    this.resetList();
+
+    this.selectedMeal = null;
+
+    //this.exercises now contains only the exercises matching the searched type
+    this.meals = this.meals.map(items => items.filter(item => item.Ingredients.toLowerCase().includes(inputIngredients.toLowerCase())));
+  }
+
+  //Search and display exercises whose Intensities contain the search term
+  searchByCalories(inputCalories: number){
+    this.resetList();
+
+    this.selectedMeal = null;
+
+    //this.exercises now contains only the exercises matching the searched type
+    this.meals = this.meals.map(items => items.filter(item => item.Calories < inputCalories));
   }
 
   ngOnInit() {
