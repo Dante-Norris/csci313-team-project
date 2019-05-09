@@ -4,6 +4,8 @@
     <div id="center">
         <p>
           <input type="string" class = "input" #searchTerm placeholder="Search">
+        </p>
+        <p>
           <button class = "button" (click)="searchByName(searchTerm.value)">Search by Name</button>
           <button class = "button" (click)="searchByType(searchTerm.value)">Search by Type</button>
           <button class = "button" (click)="searchByIntensity(searchTerm.value)">Search by Intensity</button>

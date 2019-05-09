@@ -1,5 +1,18 @@
 <h2>Meals</h2>
 <div class="container">
+    <div>
+        <div id="center">
+            <p>
+              <input type="string" class = "input" #searchTerm placeholder="Search">
+            </p>
+            <p>
+              <button class = "button" (click)="searchByName(searchTerm.value)">Search by Name</button>
+              <button class = "button" (click)="searchByIngredients(searchTerm.value)">Search by Ingredients</button>
+              <button class = "button" (click)="searchByCalories(searchTerm.value)">Search by Calories (<)</button>
+              <button class = "button" (click)="resetList()">Reset</button>
+            </p>
+        </div>
+      </div>
   <div class = "list">
     <div id = "center">
       <div class = "item">
