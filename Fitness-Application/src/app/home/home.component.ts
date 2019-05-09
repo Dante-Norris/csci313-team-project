@@ -15,10 +15,12 @@ export class HomeComponent implements OnInit {
   flag : number = 0
 
   constructor(private authService: AuthService, db: AngularFirestore) { 
-      
-      db.collection('users').doc(firebase.auth().currentUser.uid).update({
-      Name: firebase.auth().currentUser.displayName,
-    })
+      if(firebase.auth().currentUser) {
+        db.collection('users').doc(firebase.auth().currentUser.uid).update({
+        Name: firebase.auth().currentUser.displayName,
+        
+        })
+      }
   }
 
   getLoggedStatus() {

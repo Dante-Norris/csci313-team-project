@@ -42,7 +42,11 @@ export class AuthService {
           displayName: name
         })
       })
-
+      .then(function(){ 
+        console.log(firebase.auth().currentUser)
+        console.log("Redirecting...")
+        AuthService.redirect('homeLink')
+      })
       .catch(function(error) {
         // Error block
         var errorCode = error.code;
@@ -54,14 +58,6 @@ export class AuthService {
         }
         console.log(error);
       })
-
-      if (firebase.auth().currentUser) {
-          console.log(firebase.auth().currentUser)
-          console.log("i'm here")
-          this.redirect('homeLink')
-          
-      }; 
-
   }
 
 
@@ -73,6 +69,11 @@ export class AuthService {
       // // Success block
       // console.log("Sign in successful")
       console.log(firebase.auth().currentUser)
+    })
+    .then(function(){ 
+      console.log(firebase.auth().currentUser)
+      console.log("Redirecting...")
+      AuthService.redirect('homeLink')
     })
     .catch(function(error) {
       // Error block
@@ -87,12 +88,6 @@ export class AuthService {
       }
       console.log(error);
     })
-
-    if (firebase.auth().currentUser) {
-        console.log(firebase.auth().currentUser)
-        console.log("I'm here")
-        this.redirect('homeLink')
-    }
   }
 
 
@@ -108,7 +103,7 @@ export class AuthService {
   }
 
 
-  redirect(location: string) {
+  static redirect(location: string) {
     let element: HTMLElement = document.getElementById(location) as HTMLElement;
     element.click()
   }
