@@ -1,0 +1,106 @@
+.container{
+    height: 6000px;
+}
+#center{
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: center;
+}
+#userProfile{
+    text-align: center;
+}
+.stats{
+    float:left;
+    width: 33.3333333%;
+    font-family: cursive;
+    color:#414754;
+    background-color: #414754
+}
+h3{
+    font-size: 1.4vmax;
+    color: white;
+}
+p{
+    font-size: 1.2vmax;
+    color: white;
+}
+h2{
+    margin-top: -.01vmax;
+    margin-bottom: 2vmax;
+    font-family: cursive;
+    font-size: 4vmax;
+    line-height: 3vmax;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #414754;
+    color: white;
+}
+.input{
+    width: 50%;
+    height: 3vmax;
+    line-height: 2.5vmax;
+    font-size: 2vmax;
+    font-family: cursive;
+    border: 3px solid #E3E8F0;
+    transition: border .3s ease-in-out;
+    -webkit-transition: border-radius 1s,
+                        border .3s ease-in-out;         
+    color: #414754;
+    text-align: center;
+}
+::placeholder{
+    transition: color .3s ease-in-out;
+}
+.input:hover{
+    border: 3px solid #bec4ce;
+}
+.input:focus{
+    border: 3px solid #414754;
+    outline:none;
+    border-radius: 1vmax;
+}
+.input:focus::placeholder{
+    color: white;
+}
+h4{
+    margin-top: 10px;
+    padding-top: 10px;
+    font-family: cursive;
+    color: #414754;
+    font-size: 1.4vmax;
+}
+.button{
+    text-align: center;
+    background-color: #414754;
+    float: left;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    height: 4vmax;
+    line-height: 4vmax;
+    font-family: cursive;
+    transition: background-color .5s ease,
+                font-size .1s linear;
+    font-size: 2vmax;
+    color: white;
+    border: none;
+    margin-bottom: 3vmax;
+}
+#heightSelectFeet, #heightSelectInches{
+    width: 25%;
+    height: 2vmax;
+    font-size: 1.4vmax;
+    
+}
+h5{
+    font-family: cursive;
+    color: #414754;
+    font-size: 1.4vmax;
+    padding: 0px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+.button:hover{
+    background-color: #313642;
+    font-size: 2.5vmax;
+}
