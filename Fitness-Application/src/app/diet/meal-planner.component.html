@@ -1,51 +1,50 @@
 <h2>Meals</h2>
 <div class="container">
-    <div>
-        <div id="center">
-            <p>
-              <input type="string" class = "input" #searchTerm placeholder="Search...">
-            </p>
-            <p>
-              <button class = "button" (click)="searchByName(searchTerm.value)">Search by Name</button>
-              <button class = "button" (click)="searchByIngredients(searchTerm.value)">Search by Ingredients</button>
-              <button class = "button" (click)="searchByCalories(searchTerm.value)">Search by Calories</button>
-              <button class = "button" (click)="resetList()">Reset</button>
-            </p>
-        </div>
-      </div>
-  <div class = "list">
-    <div id = "center">
-      <div class = "item" (click)="sort('Name')">
-        <h4 id="selectable">Meal &#x21D5;</h4>
-      </div>
-      <div class = "item">
-        <h4>Ingredients</h4>
-      </div>
-      <div class = "item" (click)="sort('Calories')">
-        <h4 id="selectable">Calories &#x21D5;</h4>
-      </div> 
+  <div>
+    <div id="center">
+      <p>
+        <input type="string" class="input" #searchTerm placeholder="Search...">
+      </p>
+      <p>
+        <button class="button" (click)="searchByName(searchTerm.value)">Search by Name</button>
+        <button class="button" (click)="searchByIngredients(searchTerm.value)">Search by Ingredients</button>
+        <button class="button" (click)="searchByCalories(searchTerm.value)">Search by Calories</button>
+        <button class="button" (click)="resetList()">Reset</button>
+      </p>
     </div>
   </div>
-  
-  <div class = "scroll" id = "center">
-    <div class="list" *ngFor="let meal of meals | async">
-      <div>
-        <div class = "items">
-          <p id="selectable" (click)="onSelect(meal)">{{meal.Name}}</p>
-        </div>
-        <div class = "items">
-          <p id="selectable" (click)="onSelect(meal)">{{meal.Ingredients}}</p>
-        </div>
-        <div class = "items">
-          <p id="selectable" (click)="onSelect(meal)">{{meal.Calories}}</p>
-        </div>
+  <div class="list">
+    <div id="center">
+      <div class="item" (click)="sort('Name')">
+        <h4 id="selectable">Meal &#x21D5;</h4>
+      </div>
+      <div class="item">
+        <h4>Ingredients</h4>
+      </div>
+      <div class="item" (click)="sort('Calories')">
+        <h4 id="selectable">Calories &#x21D5;</h4>
       </div>
     </div>
   </div>
   <div *ngIf="selectedMeal" id="center">
-      <p>
-          <button id="logButton" class = "button" (click)="logMeal()">Add Selected Meal to Meal History</button>
-      </p>
+    <p>
+      <button id="logButton" class="button" (click)="logMeal()">Add Selected Meal to Meal History</button>
+    </p>
+  </div>
+  <div class="scroll" id="center">
+    <div class="list" *ngFor="let item of meals | async">
+      <div>
+        <div class="items">
+          <p id="selectable" (click)="onSelect(item)">{{item.Name}}</p>
+        </div>
+        <div class="items">
+          <p id="selectable" (click)="onSelect(item)">{{item.Ingredients}}</p>
+        </div>
+        <div class="items">
+          <p id="selectable" (click)="onSelect(item)">{{item.Calories}}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <h2>
@@ -53,64 +52,64 @@
 </h2>
 <div class="container">
   <div id="center">
-        <p>
-            <input type="string" class="inputLeftAlign" #newName placeholder="Name">
-        </p>
-        <p>
-            <input type="string" class="inputLeftAlign" #newIngredients placeholder="Ingredients">
-        </p>
-        <p>
-            <input type="number" class="inputLeftAlign" #newCalories placeholder="Calories">
-        </p>
-        <p>
-            <button class = "button" (click)="addFood(newName.value, newIngredients.value, newCalories.value)">Submit</button>
-        </p>
-    </div>
+    <p>
+      <input type="string" class="inputLeftAlign" #newName placeholder="Name">
+    </p>
+    <p>
+      <input type="string" class="inputLeftAlign" #newIngredients placeholder="Ingredients">
+    </p>
+    <p>
+      <input type="number" class="inputLeftAlign" #newCalories placeholder="Calories">
+    </p>
+    <p>
+      <button class="button" (click)="addFood(newName.value, newIngredients.value, newCalories.value)">Submit</button>
+    </p>
+  </div>
 </div>
 <h2>
   Meal History
 </h2>
 <div class="container">
-    <div>
-        <div id="center">
-            <p>
-              <input type="string" class = "input" #searchTerm placeholder="Search">
-            </p>
-            <p>
-              <button class = "button" (click)="logSearchByName(searchTerm.value)">Search by Name</button>
-              <button class = "button" (click)="logSearchByDate(searchTerm.value)">Search by Date</button>
-              <button class = "button" (click)="logResetList()">Reset</button>
-            </p>
-        </div>
-      </div>
-  <div class = "list">
-    <div id = "center">
-      <div class = "item">
+  <div>
+    <div id="center">
+      <p>
+        <input type="string" class="input" #searchTerm placeholder="Search">
+      </p>
+      <p>
+        <button class="button" (click)="logSearchByName(searchTerm.value)">Search by Name</button>
+        <button class="button" (click)="logSearchByDate(searchTerm.value)">Search by Date</button>
+        <button class="button" (click)="logResetList()">Reset</button>
+      </p>
+    </div>
+  </div>
+  <div class="list">
+    <div id="center">
+      <div class="item">
         <h4 id="selectable">Meal</h4>
       </div>
-      <div class = "item" (click)="logSort()">
+      <div class="item" (click)="logSort()">
         <h4 id="selectable">Date &#x21D5;</h4>
-      </div> 
+      </div>
     </div>
   </div>
-  
-  <div class = "scroll" id = "center">
-    <div class="list" *ngFor="let logMeal of loggedMeals | async">
+
+  <div class="scroll" id="center">
+    <div class="list" *ngFor="let item of loggedMeals | async">
       <div>
-        <div class = "items">
-          <p id="selectable" (click)="onLogSelect(logMeal)">{{logMeal.Name}}</p>
+        <div class="items">
+          <p id="selectable" (click)="onLogSelect(item)">{{item.Name}}</p>
         </div>
-        <div class = "items">
-          <p id="selectable" (click)="onLogSelect(logMeal)">{{logMeal.Date}}</p>
+        <div class="items">
+          <p id="selectable" (click)="onLogSelect(item)">{{item.Date}}</p>
         </div>
       </div>
     </div>
   </div>
-  
+
   <div class="Desc" id="center">
-      <div id = "center2">
-        <p *ngIf="selectedLogMeal">{{selectedLogMeal.Name }} ({{ selectedLogMeal.Calories }} Calories)</p>
-        <p *ngIf="selectedLogMeal">Ingredients: {{ selectedLogMeal.Ingredients }}</p>
-      </div>
+    <div id="center2">
+      <p *ngIf="selectedLogMeal">{{selectedLogMeal.Name }} ({{ selectedLogMeal.Calories }} Calories)</p>
+      <p *ngIf="selectedLogMeal">Ingredients: {{ selectedLogMeal.Ingredients }}</p>
     </div>
+  </div>
 </div>

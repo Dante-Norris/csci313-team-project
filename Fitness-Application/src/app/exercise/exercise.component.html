@@ -2,126 +2,131 @@
 <div class="container">
   <div>
     <div id="center">
-        <p>
-          <input type="string" class = "input" #searchTerm placeholder="Search...">
-        </p>
-        <p>
-          <button class = "button" (click)="searchByName(searchTerm.value)">Search by Name</button>
-          <button class = "button" (click)="searchByType(searchTerm.value)">Search by Type</button>
-          <button class = "button" (click)="searchByIntensity(searchTerm.value)">Search by Intensity</button>
-          <button class = "button" (click)="resetList()">Reset</button>
-        </p>
+      <p>
+        <input type="string" class="input" #searchTerm placeholder="Search...">
+      </p>
+      <p>
+        <button class="button" (click)="searchByName(searchTerm.value)">Search by Name</button>
+        <button class="button" (click)="searchByType(searchTerm.value)">Search by Type</button>
+        <button class="button" (click)="searchByIntensity(searchTerm.value)">Search by Intensity</button>
+        <button class="button" (click)="resetList()">Reset</button>
+      </p>
     </div>
   </div>
-  <div class = "list">
-    <div id = "center">
-      <div class = "item" (click)="sort('Name')">
+  <div class="list">
+    <div id="center">
+      <div class="item" (click)="sort('Name')">
         <h4 id="selectable">Name &#x21D5;</h4>
       </div>
-      <div class = "item" (click)="sort('Type')">
+      <div class="item" (click)="sort('Type')">
         <h4 id="selectable">Type &#x21D5;</h4>
       </div>
-      <div class = "item" (click)="sort('Intensity')">
+      <div class="item" (click)="sort('Intensity')">
         <h4 id="selectable">Intensity &#x21D5;</h4>
-      </div>  
+      </div>
     </div>
   </div>
-  
-  <div class = "scroll" id = "center">
+
+  <div class="scroll" id="center">
     <div class="list" *ngFor="let item of exercises | async">
       <div>
-        <div class = "items">
+        <div class="items">
           <p id="selectable" (click)="onSelect(item)">{{item.Name}}</p>
         </div>
-        <div class = "items">
-            <p id="selectable" (click)="onSelect(item)">{{item.Type}}</p>
+        <div class="items">
+          <p id="selectable" (click)="onSelect(item)">{{item.Type}}</p>
         </div>
-        <div class = "items">
+        <div class="items">
           <p id="selectable" (click)="onSelect(item)">{{item.Intensity}}</p>
         </div>
       </div>
     </div>
   </div>
   <div class="Desc" id="center">
-    <div id = "center2">
-      <p *ngIf="selectedExercise">{{selectedExercise.Name }} ({{ selectedExercise.Type }}, {{ selectedExercise.Intensity }} Intensity)</p>
+    <div id="center2">
+      <p *ngIf="selectedExercise">{{selectedExercise.Name }} ({{ selectedExercise.Type }},
+        {{ selectedExercise.Intensity }} Intensity)</p>
       <p *ngIf="selectedExercise">Description: {{ selectedExercise.Description }}</p>
     </div>
   </div>
   <div *ngIf="selectedExercise" id="center">
-      <p>
-          <button id="logButton" class = "button" (click)="logExercise()">Add Selected Exercise to Workout History</button>
-      </p>
+    <p>
+      <button id="logButton" class="button" (click)="logExercise()">Add Selected Exercise to Workout History</button>
+    </p>
   </div>
 </div>
 <h2>
-    Add Exercise
+  <br>Add Exercise
 </h2>
 <div class="container">
   <div id="center">
-    
-      <p>
-          <input type="string" class="inputLeftAlign" #newName placeholder="Name">
-      </p>
-      <p>
-          <input type="string" class="inputLeftAlign" #newType placeholder="Type">
-      </p>
-      <p>
-          <input type="string" class="inputLeftAlign" #newIntensity placeholder="Intensity">
-      </p>
-      <p>
-          <textarea type="string" id="description" class="inputLeftAlign" #newDescription placeholder="Description"></textarea>
-      </p>
-      <p>
-          <button class = "button" (click)="addExercise(newName.value, newType.value, newIntensity.value, newDescription.value)">Create Exercise</button>
-      </p>
+
+    <p>
+      <input type="string" class="inputLeftAlign" #newName placeholder="Name">
+    </p>
+    <p>
+      <input type="string" class="inputLeftAlign" #newType placeholder="Type">
+    </p>
+    <p>
+      <input type="string" class="inputLeftAlign" #newIntensity placeholder="Intensity">
+    </p>
+    <p>
+      <textarea type="string" id="description" class="inputLeftAlign" #newDescription
+        placeholder="Description"></textarea>
+    </p>
+    <p>
+      <button class="button"
+        (click)="addExercise(newName.value, newType.value, newIntensity.value, newDescription.value)">Create
+        Exercise</button>
+    </p>
   </div>
-  
+
 </div>
 <h2>
   Workout History
 </h2>
 <div class="container">
-    <div>
-        <div id="center">
-            <p>
-              <input type="string" class = "input" #logSearchTerm placeholder="Search...">
-            </p>
-            <p>
-              <button class = "button" (click)="logSearchByName(logSearchTerm.value)">Search by Name</button>
-              <button class = "button" (click)="logSearchByDate(logSearchTerm.value)">Search by Date</button>
-              <button class = "button" (click)="logResetList()">Reset</button>
-            </p>
+  <div>
+    <div id="center">
+      <p>
+        <input type="string" class="input" #logSearchTerm placeholder="Search...">
+      </p>
+      <p>
+        <button class="button" (click)="logSearchByName(logSearchTerm.value)">Search by Name</button>
+        <button class="button" (click)="logSearchByDate(logSearchTerm.value)">Search by Date</button>
+        <button class="button" (click)="logResetList()">Reset</button>
+      </p>
+    </div>
+  </div>
+  <div class="list">
+    <div id="center">
+      <div class="item">
+        <h4>Name</h4>
+      </div>
+      <div class="item" (click)="logSort()">
+        <h4 id="selectable">Date &#x21D5;</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll" id="center">
+    <div class="list" *ngFor="let item of loggedExercises | async">
+      <div>
+        <div class="items">
+          <p id="selectable" (click)="onLogSelect(item)">{{item.Name}}</p>
+        </div>
+        <div class="items">
+          <p id="selectable" (click)="onLogSelect(item)">{{item.Date}}</p>
         </div>
       </div>
-      <div class = "list">
-        <div id = "center">
-          <div class = "item">
-            <h4>Name</h4>
-          </div>
-          <div class = "item" (click)="logSort()">
-            <h4 id="selectable">Date &#x21D5;</h4>
-          </div>
-        </div>
-      </div>
-      
-      <div class = "scroll" id = "center">
-        <div class="list" *ngFor="let item of loggedExercises | async">
-          <div>
-            <div class = "items">
-              <p id="selectable" (click)="onLogSelect(item)">{{item.Name}}</p>
-            </div>
-            <div class = "items">
-                <p id="selectable" (click)="onLogSelect(item)">{{item.Date}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="Desc" id="center">
-        <div id = "center2">
-          <p *ngIf="selectedLogExercise">{{selectedLogExercise.Name }} ({{ selectedLogExercise.Type }}, {{ selectedLogExercise.Intensity }} Intensity)</p>
-          <p *ngIf="selectedLogExercise">Description: {{ selectedLogExercise.Description }}</p>
-        </div>
-      </div>
+    </div>
+  </div>
+
+  <div class="Desc" id="center">
+    <div id="center2">
+      <p *ngIf="selectedLogExercise">{{selectedLogExercise.Name }} ({{ selectedLogExercise.Type }},
+        {{ selectedLogExercise.Intensity }} Intensity)</p>
+      <p *ngIf="selectedLogExercise">Description: {{ selectedLogExercise.Description }}</p>
+    </div>
+  </div>
 </div>

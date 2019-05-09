@@ -9,18 +9,18 @@ import 'rxjs/add/operator/filter';
 export class Exercise {
   Name: string;
   Description: string;
-  Intensity: string; 
+  Intensity: string;
   Type: string;
 }
 
-export class ExerciseID extends Exercise{ 
-  id: string; 
+export class ExerciseID extends Exercise {
+  id: string;
 }
-export class LogExercise extends ExerciseID{
+export class LogExercise extends ExerciseID {
   Date: string;
 }
 
-export class LogExerciseID extends LogExercise{
+export class LogExerciseID extends LogExercise {
   logId: string;
 }
 
@@ -39,20 +39,20 @@ export class ExerciseComponent implements OnInit {
   }
 
   //Sort list by Name, Type, or Intensity
-  sort(sortBy: string){
-    if(sortBy === 'Name'){
-      this.exercises = this.exercises.map( items => items.sort(this.sortByName));
+  sort(sortBy: string) {
+    if (sortBy === 'Name') {
+      this.exercises = this.exercises.map(items => items.sort(this.sortByName));
     }
-    else if(sortBy === 'Type'){
-      this.exercises = this.exercises.map( items => items.sort(this.sortByType));
+    else if (sortBy === 'Type') {
+      this.exercises = this.exercises.map(items => items.sort(this.sortByType));
     }
-    else{
-      this.exercises = this.exercises.map( items => items.sort(this.sortByIntensity));
+    else {
+      this.exercises = this.exercises.map(items => items.sort(this.sortByIntensity));
     }
   }
 
   //Sort list alphabetically by name of exercise
-  sortByName(a,b) {
+  sortByName(a, b) {
     if (a.Name < b.Name)
       return -1;
     if (a.Name > b.Name)
@@ -61,7 +61,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   //Sort list alphabetically by type of exercise
-  sortByType(a,b) {
+  sortByType(a, b) {
     if (a.Type < b.Type)
       return -1;
     if (a.Type > b.Type)
@@ -70,19 +70,19 @@ export class ExerciseComponent implements OnInit {
   }
 
   //Sort list by intensity of exercise, Low < Medium < High
-  sortByIntensity(a,b) {
+  sortByIntensity(a, b) {
     var aVal = a.Intensity;
     var bVal = b.Intensity;
 
     //Default sort would be alphabetical, assigning number allows L<M<H
-    if( aVal === 'Low' ){ aVal = 1; }
-    else if( aVal === 'Medium' ){ aVal = 2; }
-    else{ aVal = 3; }
+    if (aVal === 'Low') { aVal = 1; }
+    else if (aVal === 'Medium') { aVal = 2; }
+    else { aVal = 3; }
 
-    if( bVal === 'Low' ){ bVal = 1; }
-    else if( bVal === 'Medium' ){ bVal = 2; }
-    else{ bVal = 3; }
-    
+    if (bVal === 'Low') { bVal = 1; }
+    else if (bVal === 'Medium') { bVal = 2; }
+    else { bVal = 3; }
+
     if (aVal < bVal)
       return -1;
     if (aVal > bVal)
@@ -91,7 +91,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   //Reset this.exercises in case already searched
-  resetList(){
+  resetList() {
     this.selectedExercise = null;
     this.exercises = this.exerciseCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
@@ -103,7 +103,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   //Search and display exercises whose Names contain the search term
-  searchByName(inputName: string){
+  searchByName(inputName: string) {
     this.resetList();
 
     //this.exercises now contains only the exercises matching the searched name
@@ -111,7 +111,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   //Search and display exercises whose Types contain the search term
-  searchByType(inputType: string){
+  searchByType(inputType: string) {
     this.resetList();
 
     //this.exercises now contains only the exercises matching the searched type
@@ -119,7 +119,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   //Search and display exercises whose Intensities contain the search term
-  searchByIntensity(inputIntensity: string){
+  searchByIntensity(inputIntensity: string) {
     this.resetList();
 
     //this.exercises now contains only the exercises matching the searched type
@@ -127,7 +127,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   //Create exercise, add to database
-  addExercise(newName: string, newType: string, newIntensity: string, newDescription: string){
+  addExercise(newName: string, newType: string, newIntensity: string, newDescription: string) {
     this.data.collection('exercises').add({
       Name: newName,
       Type: newType,
@@ -137,7 +137,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   //Add selectedExercise to workout history
-  logExercise(){
+  logExercise() {
     this.data.collection('users/' + firebase.auth().currentUser.uid + '/loggedExercises').add({
       id: this.selectedExercise.id,
       Name: this.selectedExercise.Name,
@@ -148,11 +148,11 @@ export class ExerciseComponent implements OnInit {
     })
 
     this.logResetList();
-    
+
   }
 
   //Search and display exercises whose Names contain the search term
-  logSearchByName(inputName: string){
+  logSearchByName(inputName: string) {
     this.logResetList();
 
 
@@ -161,33 +161,33 @@ export class ExerciseComponent implements OnInit {
   }
 
   //Search and display exercises whose Dates match the search term
-  logSearchByDate(inputDate: string){
+  logSearchByDate(inputDate: string) {
     this.logResetList();
 
 
     //this.loggedExercises now contains only the exercises matching the searched date
-    this.loggedExercises = this.loggedExercises.map(items => items.filter(function(item: LogExerciseID){
+    this.loggedExercises = this.loggedExercises.map(items => items.filter(function (item: LogExerciseID) {
       var convertLocaleDate = new Date(item.Date);
       var convertLocaleDateInput = new Date(inputDate);
       return convertLocaleDate.getTime() === convertLocaleDateInput.getTime();
     }));
   }
 
-  logSort(){
-    this.loggedExercises = this.loggedExercises.map( items => items.sort(function(a,b): number{
+  logSort() {
+    this.loggedExercises = this.loggedExercises.map(items => items.sort(function (a, b): number {
       var aDate = new Date(a.Date);
       var bDate = new Date(b.Date);
       if (aDate < bDate)
         return -1;
-      if (aDate > bDate)  
+      if (aDate > bDate)
         return 1;
       return 0;
     }));
   }
 
   //Reset after search
-  logResetList(){
-    this.selectedLogExercise =  null;
+  logResetList() {
+    this.selectedLogExercise = null;
     this.loggedExercises = this.data.collection<LogExercise>('users/' + firebase.auth().currentUser.uid + '/loggedExercises').snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as LogExercise;
@@ -197,7 +197,7 @@ export class ExerciseComponent implements OnInit {
     });
   }
 
-  onLogSelect(ex: LogExerciseID){
+  onLogSelect(ex: LogExerciseID) {
     this.selectedLogExercise = ex;
   }
 
