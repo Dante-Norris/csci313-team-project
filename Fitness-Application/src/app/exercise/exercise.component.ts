@@ -92,6 +92,7 @@ export class ExerciseComponent implements OnInit {
 
   //Reset this.exercises in case already searched
   resetList(){
+    this.selectedExercise = null;
     this.exercises = this.exerciseCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Exercise;
@@ -105,8 +106,6 @@ export class ExerciseComponent implements OnInit {
   searchByName(inputName: string){
     this.resetList();
 
-    this.selectedExercise = null;
-
     //this.exercises now contains only the exercises matching the searched name
     this.exercises = this.exercises.map(items => items.filter(item => item.Name.toLowerCase().includes(inputName.toLowerCase())));
   }
@@ -115,8 +114,6 @@ export class ExerciseComponent implements OnInit {
   searchByType(inputType: string){
     this.resetList();
 
-    this.selectedExercise = null;
-
     //this.exercises now contains only the exercises matching the searched type
     this.exercises = this.exercises.map(items => items.filter(item => item.Type.toLowerCase().includes(inputType.toLowerCase())));
   }
@@ -124,8 +121,6 @@ export class ExerciseComponent implements OnInit {
   //Search and display exercises whose Intensities contain the search term
   searchByIntensity(inputIntensity: string){
     this.resetList();
-
-    this.selectedExercise = null;
 
     //this.exercises now contains only the exercises matching the searched type
     this.exercises = this.exercises.map(items => items.filter(item => item.Intensity.toLowerCase().includes(inputIntensity.toLowerCase())));
@@ -192,6 +187,7 @@ export class ExerciseComponent implements OnInit {
 
   //Reset after search
   logResetList(){
+    this.selectedLogExercise =  null;
     this.loggedExercises = this.data.collection<LogExercise>('users/' + firebase.auth().currentUser.uid + '/loggedExercises').snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as LogExercise;
@@ -229,7 +225,6 @@ export class ExerciseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.logResetList();
   }
 
 }

@@ -7,7 +7,7 @@
     clear: both;
 }
 .container{
-    height: 50vh;
+    height: 55vh;
 }
 .item{
     
@@ -35,6 +35,11 @@
     width: 70%;
     margin-left: 15%;
     margin-right: 15%; 
+}
+#center2{
+    width: 94%;
+    margin-left: 3%;
+    margin-right: 3%; 
 }
 h2{
     line-height: 5vmax;
@@ -114,6 +119,17 @@ h2{
 {
     background-color: #000000;
 }
+.Desc{
+    
+    float:left;
+    width: 100%;
+    font-family: cursive;
+    background-color: #313642;
+    color: white;
+    font-size: 1.4vmax;
+    line-height: 2vmax;
+    height: 10vmax;
+}
 button{
     text-align: center;
     background-color: #414754;
@@ -131,6 +147,9 @@ button{
 button:hover{
     background-color: #313642;
     font-size: 1.4vmax;
+}
+#logButton{
+    width: 100%
 }
 input:hover{
     border: 3px solid #bec4ce;
