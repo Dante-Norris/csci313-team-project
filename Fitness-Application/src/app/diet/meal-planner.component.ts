@@ -40,7 +40,7 @@ export class MealPlannerComponent implements OnInit {
     });
   }
 
-  //Create exercise, add to database
+  //Create meal, add to database
   addFood(newName: string, newIngredients: string, newCalories: number){
     this.data.collection('diet').add({
       Name: newName,
@@ -49,7 +49,7 @@ export class MealPlannerComponent implements OnInit {
     })
   }
 
-  //Sort list by Name, Type, or Intensity
+  //Sort list by Name, Ingredients, or Calories
   sort(sortBy: string){
     if(sortBy === 'Name'){
       this.meals = this.meals.map( items => items.sort(this.sortByName));
@@ -89,34 +89,34 @@ export class MealPlannerComponent implements OnInit {
     });
   }
 
-  //Search and display exercises whose Names contain the search term
+  //Search and display meals whose Names contain the search term
   searchByName(inputName: string){
     this.resetList();
 
     this.selectedMeal = null;
 
-    //this.exercises now contains only the exercises matching the searched name
+    //this.meals now contains only the meals matching the searched name
     this.meals = this.meals.map(items => items.filter(item => item.Name.toLowerCase().includes(inputName.toLowerCase())));
   }
 
-  //Search and display exercises whose Types contain the search term
+  //Search and display meals whose Ingredients contain the search term
   searchByIngredients(inputIngredients: string){
     this.resetList();
 
     this.selectedMeal = null;
 
-    //this.exercises now contains only the exercises matching the searched type
+    //this.meals now contains only the meals matching the searched ingredient
     this.meals = this.meals.map(items => items.filter(item => item.Ingredients.toLowerCase().includes(inputIngredients.toLowerCase())));
   }
 
-  //Search and display exercises whose Intensities contain the search term
+  //Search and display meals whose Calories are less than or equal to the inputCalories
   searchByCalories(inputCalories: number){
     this.resetList();
 
     this.selectedMeal = null;
 
-    //this.exercises now contains only the exercises matching the searched type
-    this.meals = this.meals.map(items => items.filter(item => item.Calories < inputCalories));
+    //this.meals now contains only the meals having <= the input calories
+    this.meals = this.meals.map(items => items.filter(item => item.Calories <= inputCalories));
   }
 
   ngOnInit() {

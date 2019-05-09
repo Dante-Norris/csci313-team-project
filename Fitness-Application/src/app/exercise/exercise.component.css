@@ -7,7 +7,7 @@
     clear: both;
 }
 .container{
-    height: 57.7vh;
+    height: 55vh;
 }
 .item{
     
@@ -87,6 +87,10 @@ h2{
 #selectable{
     cursor: pointer;
 }
+#description{
+    height: 9vmax;
+    width: 99.25%;
+}
 ::-webkit-scrollbar-track
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -145,4 +149,7 @@ button{
 button:hover{
     background-color: #313642;
     font-size: 1.4vmax;
+}
+#logButton{
+    width: 100%
 }

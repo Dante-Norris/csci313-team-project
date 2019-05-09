@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase/app';
+
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
-import { stringify } from '@angular/compiler/src/util';
 
 export class Exercise {
   Name: string;
@@ -14,6 +15,13 @@ export class Exercise {
 
 export class ExerciseID extends Exercise{ 
   id: string; 
+}
+export class LogExercise extends ExerciseID{
+  Date: string;
+}
+
+export class LogExerciseID extends LogExercise{
+  logId: string;
 }
 
 @Component({
@@ -133,11 +141,79 @@ export class ExerciseComponent implements OnInit {
     })
   }
 
+  //Add selectedExercise to workout history
+  logExercise(){
+    this.data.collection('users/' + firebase.auth().currentUser.uid + '/loggedExercises').add({
+      id: this.selectedExercise.id,
+      Name: this.selectedExercise.Name,
+      Type: this.selectedExercise.Type,
+      Intensity: this.selectedExercise.Intensity,
+      Description: this.selectedExercise.Description,
+      Date: new Date().toLocaleDateString()
+    })
+
+    this.logResetList();
+    
+  }
+
+  //Search and display exercises whose Names contain the search term
+  logSearchByName(inputName: string){
+    this.logResetList();
+
+
+    //this.loggedExercises now contains only the exercises matching the searched name
+    this.loggedExercises = this.loggedExercises.map(items => items.filter(item => item.Name.toLowerCase().includes(inputName.toLowerCase())));
+  }
+
+  //Search and display exercises whose Dates match the search term
+  logSearchByDate(inputDate: string){
+    this.logResetList();
+
+
+    //this.loggedExercises now contains only the exercises matching the searched date
+    this.loggedExercises = this.loggedExercises.map(items => items.filter(function(item: LogExerciseID){
+      var convertLocaleDate = new Date(item.Date);
+      var convertLocaleDateInput = new Date(inputDate);
+      return convertLocaleDate.getTime() === convertLocaleDateInput.getTime();
+    }));
+  }
+
+  logSort(){
+    this.loggedExercises = this.loggedExercises.map( items => items.sort(function(a,b): number{
+      var aDate = new Date(a.Date);
+      var bDate = new Date(b.Date);
+      if (aDate < bDate)
+        return -1;
+      if (aDate > bDate)  
+        return 1;
+      return 0;
+    }));
+  }
+
+  //Reset after search
+  logResetList(){
+    this.loggedExercises = this.data.collection<LogExercise>('users/' + firebase.auth().currentUser.uid + '/loggedExercises').snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as LogExercise;
+        const logId = a.payload.doc.id;
+        return { logId, ...data };
+      });
+    });
+  }
+
+  onLogSelect(ex: LogExerciseID){
+    this.selectedLogExercise = ex;
+  }
+
+  selectedLogExercise: LogExerciseID;
+
   data: AngularFirestore;
   //Used as temporary collection in constructor
   exerciseCollection: AngularFirestoreCollection<Exercise>;
   //Displayed as list on page
   exercises: Observable<ExerciseID[]>;
+
+  loggedExercises: Observable<LogExerciseID[]>;
 
   //Returns collection as Observable<ExerciseID[]> which includes the document ID
   constructor(db: AngularFirestore) {
@@ -153,6 +229,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.logResetList();
   }
 
 }
