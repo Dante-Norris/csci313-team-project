@@ -75,7 +75,7 @@
         placeholder="Description"></textarea>
     </p>
     <p>
-      <button class="button"
+      <button class="button3"
         (click)="addExercise(newName.value, newType.value, newIntensity.value, newDescription.value)">Create
         Exercise</button>
     </p>
@@ -92,18 +92,18 @@
         <input type="string" class="input" #logSearchTerm placeholder="Search...">
       </p>
       <p>
-        <button class="button" (click)="logSearchByName(logSearchTerm.value)">Search by Name</button>
-        <button class="button" (click)="logSearchByDate(logSearchTerm.value)">Search by Date</button>
-        <button class="button" (click)="logResetList()">Reset</button>
+        <button class="button2" (click)="logSearchByName(logSearchTerm.value)">Search by Name</button>
+        <button class="button2" (click)="logSearchByDate(logSearchTerm.value)">Search by Date</button>
+        <button class="button2" (click)="logResetList()">Reset</button>
       </p>
     </div>
   </div>
   <div class="list">
     <div id="center">
-      <div class="item">
+      <div class="item2">
         <h4>Name</h4>
       </div>
-      <div class="item" (click)="logSort()">
+      <div class="item2" (click)="logSort()">
         <h4 id="selectable">Date &#x21D5;</h4>
       </div>
     </div>
@@ -112,10 +112,10 @@
   <div class="scroll" id="center">
     <div class="list" *ngFor="let item of loggedExercises | async">
       <div>
-        <div class="items">
+        <div class="items2">
           <p id="selectable" (click)="onLogSelect(item)">{{item.Name}}</p>
         </div>
-        <div class="items">
+        <div class="items2">
           <p id="selectable" (click)="onLogSelect(item)">{{item.Date}}</p>
         </div>
       </div>
