@@ -1,15 +1,26 @@
 <h2>Exercises</h2>
 <div class="container">
+  <div>
+    <div id="center">
+        <p>
+          <input type="string" class = "input" #searchTerm placeholder="Search">
+          <button class = "button" (click)="searchByName(searchTerm.value)">Search by Name</button>
+          <button class = "button" (click)="searchByType(searchTerm.value)">Search by Type</button>
+          <button class = "button" (click)="searchByIntensity(searchTerm.value)">Search by Intensity</button>
+          <button class = "button" (click)="resetList()">Reset</button>
+        </p>
+    </div>
+  </div>
   <div class = "list">
     <div id = "center">
       <div class = "item" (click)="sort('Name')">
-        <h4 id="selectable">Name</h4>
+        <h4 id="selectable">Name &#x21D5;</h4>
       </div>
       <div class = "item" (click)="sort('Type')">
-        <h4 id="selectable">Type</h4>
+        <h4 id="selectable">Type &#x21D5;</h4>
       </div>
       <div class = "item" (click)="sort('Intensity')">
-        <h4 id="selectable">Intensity</h4>
+        <h4 id="selectable">Intensity &#x21D5;</h4>
       </div>  
     </div>
   </div>
@@ -31,8 +42,8 @@
   </div>
   <div class="Desc" id="center">
     <div id = "center2">
-      <p>{{selectedExercise.Name }} ({{ selectedExercise.Type }}, {{ selectedExercise.Intensity }})</p>
-      <p>Description: {{ selectedExercise.Description }}</p>
+      <p *ngIf="selectedExercise">{{selectedExercise.Name }} ({{ selectedExercise.Type }}, {{ selectedExercise.Intensity }})</p>
+      <p *ngIf="selectedExercise">Description: {{ selectedExercise.Description }}</p>
     </div>
     </div>
   

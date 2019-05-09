@@ -6,10 +6,10 @@ import 'rxjs/add/operator/filter';
 import { stringify } from '@angular/compiler/src/util';
 
 export class Exercise {
-  name: string;
-  description: string;
-  intensity: string; 
-  type: string;
+  Name: string;
+  Description: string;
+  Intensity: string; 
+  Type: string;
 }
 
 export class ExerciseID extends Exercise{ 
@@ -82,8 +82,49 @@ export class ExerciseComponent implements OnInit {
     return 0;
   }
 
+  //Reset this.exercises in case already searched
+  resetList(){
+    this.exercises = this.exerciseCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Exercise;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
+  }
+
+  //Search and display exercises whose Names contain the search term
+  searchByName(inputName: string){
+    this.resetList();
+
+    this.selectedExercise = null;
+
+    //this.exercises now contains only the exercises matching the searched name
+    this.exercises = this.exercises.map(items => items.filter(item => item.Name.toLowerCase().includes(inputName.toLowerCase())));
+  }
+
+  //Search and display exercises whose Types contain the search term
+  searchByType(inputType: string){
+    this.resetList();
+
+    this.selectedExercise = null;
+
+    //this.exercises now contains only the exercises matching the searched type
+    this.exercises = this.exercises.map(items => items.filter(item => item.Type.toLowerCase().includes(inputType.toLowerCase())));
+  }
+
+  //Search and display exercises whose Intensities contain the search term
+  searchByIntensity(inputIntensity: string){
+    this.resetList();
+
+    this.selectedExercise = null;
+
+    //this.exercises now contains only the exercises matching the searched type
+    this.exercises = this.exercises.map(items => items.filter(item => item.Intensity.toLowerCase().includes(inputIntensity.toLowerCase())));
+  }
+
   //Used as temporary collection in constructor
-  private exerciseCollection: AngularFirestoreCollection<Exercise>;
+  exerciseCollection: AngularFirestoreCollection<Exercise>;
   //Displayed as list on page
   exercises: Observable<ExerciseID[]>;
 
