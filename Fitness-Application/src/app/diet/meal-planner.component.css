@@ -42,6 +42,7 @@
     margin-right: 3%; 
 }
 h2{
+    clear: both;
     line-height: 5vmax;
     text-align: center;
     font-size: 5vmax;
@@ -90,18 +91,18 @@ h2{
 ::-webkit-scrollbar-track
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #F5F5F5;
+    background-color: #414754;
 }
 
 ::-webkit-scrollbar
 {
     width: 10px;
-    background-color: #F5F5F5;
+    background-color: #414754;
 }
 
 ::-webkit-scrollbar-thumb
 {
-    background-color: #000000;
+    background-color: #313642;
 }
 .Desc{
     
@@ -146,5 +147,69 @@ input:focus{
 input:focus::placeholder{
     color: white;
 }
-
+.button3{
+    text-align: center;
+    background-color: #414754;
+    float: left;
+    width: 100%;
+    height: 4vmax;
+    line-height: 4vmax;
+    font-family: cursive;
+    transition: background-color .5s ease,
+                font-size .1s linear;
+    font-size: 1.3vmax;
+    color: white;
+    border: none;
+}
+.button2{
+    text-align: center;
+    background-color: #414754;
+    float: left;
+    width: 33.3333333%;
+    height: 4vmax;
+    line-height: 4vmax;
+    font-family: cursive;
+    transition: background-color .5s ease,
+                font-size .1s linear;
+    font-size: 1.3vmax;
+    color: white;
+    border: none;
+}
+.items2{
+    float:left;
+    width: 50%;
+    font-family: cursive;
+    background-color: #414754;
+    color: white;
+    font-size: 1.4vmax;
+    line-height: 2vmax;
+    height: 5vmax;
+    border-bottom: 1px solid #313642;
+}
+.item2{
+    
+    float:left;
+    width: 50%;
+    font-family: cursive;
+    background-color: #313642;
+    color: white;
+    font-size: 1.4vmax;
+    line-height: 2vmax;
+    height: 5vmax;
+}
+.button4{
+    margin-top: -12px;
+    text-align: center;
+    background-color: #414754;
+    float: left;
+    width: 100%;
+    height: 4vmax;
+    line-height: 4vmax;
+    font-family: cursive;
+    transition: background-color .5s ease,
+                font-size .1s linear;
+    font-size: 1.3vmax;
+    color: white;
+    border-top: 1px solid #313642;
+}
 
